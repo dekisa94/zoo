@@ -29,6 +29,23 @@
         </tr>
       </tbody>
     </table>
+
+    <table>
+          <thead>
+          <th>Sector name</th>
+          <th>Surface</th>
+          <th>&nbsp;</th>
+          </thead>
+          <tbody>
+            <tr v-for= "(sector,key) in sectors" :key="key">
+            <td> {{sector.name}} </td>
+            <td> {{sector.surface}} </td>
+            <td><button @click="show(sector)">View sector</button></td>
+            </tr>
+          </tbody>
+        </table>
+
+
   </div>
 </template>
 
@@ -69,6 +86,14 @@ export default {
     },
     addAnimal(){
       this.animals.push(this.newAnimal)
+    },
+    show(sector){
+      var sectorAnimals=[]
+      this.animals.forEach(animal => {
+        if(animal.sector.name === sector.name)
+        sectorAnimals.push(animal.name)
+      })
+      alert(sectorAnimals);
     }
   }
 }
