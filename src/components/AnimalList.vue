@@ -14,6 +14,7 @@
       <th>Type</th>
       <th>Name</th>
       <th>Date of birth</th>
+      <th>Sector</th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
       </thead>
@@ -22,6 +23,7 @@
         <td> {{animal.type}} </td>
         <td> {{animal.name}} </td>
         <td> {{animal.dateOfBirth === '' ? 'Unknown' : animal.dateOfBirth }} </td>
+        <td> {{animal.sector.name}} </td>
         <td><button @click="remove(animal)">Remove</button></td>
         <td><button @click="toTop(key)">Move to top</button></td>
         </tr>
@@ -31,16 +33,23 @@
 </template>
 
 <script>
+const sectors = [
+  { name:'Predators', surface: 'kage' },
+  { name: 'WaterAnimals', surface: 'water' },
+  { name: 'Fawl', surface: 'kage' }
+];
 export default {
   name: 'AnimalList',
   data(){
     return{
+      sectors: sectors,
+
       animals:[
-        {type: 'Girrafe', name: 'Doe', dateOfBirth: '2017-03-05'},
-        {type: 'Tiger', name: 'Johan', dateOfBirth: '2013-07-05'},
-        {type: 'Wolf', name: 'Daglas', dateOfBirth: '2003-08-11'},
-        {type: 'Monkey', name: 'Sead', dateOfBirth: '2018-04-02'},
-        {type: 'Elephant', name: 'Joe', dateOfBirth: '1998-06-05'}
+        {type: 'Girrafe', name: 'Doe', dateOfBirth: '2017-03-05', sector:sectors[2]},
+        {type: 'Tiger', name: 'Johan', dateOfBirth: '2013-07-05', sector:sectors[2]},
+        {type: 'Wolf', name: 'Daglas', dateOfBirth: '2003-08-11', sector:sectors[1]},
+        {type: 'Monkey', name: 'Sead', dateOfBirth: '2018-04-02', sector:sectors[0]},
+        {type: 'Elephant', name: 'Joe', dateOfBirth: '1998-06-05', sector:sectors[1]}
       ],
       newAnimal:{
         type:'',
